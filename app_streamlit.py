@@ -14,9 +14,12 @@ menu_selectbox = st.sidebar.selectbox(
 )
 
 roll_d20 = st.sidebar.button("Roll D20")
+roll_d10 = st.sidebar.button("Roll D10")
 if roll_d20:
     st.sidebar.write(random.randint(1,20))
-        
+if roll_d10:
+    st.sidebar.write(random.randint(1,10))
+                
 
 if menu_selectbox == "Fate Dice":
     generate_fate(session_state)

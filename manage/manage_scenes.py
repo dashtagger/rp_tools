@@ -1,3 +1,4 @@
+import random
 import streamlit as st
 import pandas as pd
 import os
@@ -12,7 +13,7 @@ def manage_scenes(session_state):
     df_scenes = None
     scene_file = st.selectbox("Select scene file",os.listdir("session/scenes"))
     df_scenes = pd.read_csv("session/scenes/"+scene_file)
-    
+
     if show_all_scenes =="Show":
         st.write(df_scenes)
 
@@ -57,3 +58,14 @@ def manage_scenes(session_state):
             df_scenes.to_csv("session/scenes/"+scene_file,index=False)
             st.success('Updated!')
             st.button("Refresh")
+        roll_scene_modifier = st.button("Roll for Scene Modifier")
+        if roll_scene_modifier:
+            d10_value = random.randint(1,10)
+            if d10_value <= int(chaos_factor):
+                st.write("Scene Modified! ")
+                if d10_value%2 ==0:
+                    st.write("Altered Scene!Ask a Fate Question")
+                else:
+                    st.write("Interupt Scene! Roll for random event!")
+            else:
+                st.write("Scene Unchanged.")
