@@ -58,3 +58,38 @@ def generate_event(session_state):
         st.subheader("Event Meaning")
         st.write("Action: "+ session_state.event_action)
         st.write("Subject: "+ session_state.event_subject)
+
+def generate_quick_event(session_state):
+    df_event_table = pd.read_csv("tables/event_table.csv")
+    bc_l,bc_r = st.sidebar.beta_columns([5,5])
+    side_roll_event_focus = bc_l.button("Generate event focus")
+    result = "Unknown"
+    if side_roll_event_focus:
+        roll_result = random.randint(1,100)
+        bc_r.write("Roll Value: " + str(roll_result))
+        if roll_result<=7:
+            result = "Remote event"
+        elif roll_result <=28:
+            result = "NPC action"
+        elif roll_result <=35:
+            result = "Introduce new NPC"
+        elif roll_result <=45:
+            result = "Move toward a thread"
+        elif roll_result <=52:
+            result = "Move away from a thread"
+        elif roll_result <=55:
+            result = "Close a thread"
+        elif roll_result <=67:
+            result = "PC negative"
+        elif roll_result <=75:
+            result = "PC positive"
+        elif roll_result <=83:
+            result = "Ambigous event"
+        elif roll_result <=92:
+            result = "NPC Negative"
+        elif roll_result <=100:
+            result = "NPC Positive"
+        bc_r.write("Event Focus: " + result)
+        bc_r.write("Action: "+ random.choice(event_meaning.Action))
+        bc_r.write("Subject: "+ random.choice(event_meaning.Subject))
+       
