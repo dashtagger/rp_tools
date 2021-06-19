@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import random
 
-import event_meaning
-import session_state
+import attributes.event_meaning as event_meaning
+import utils.session_state as session_state
 
 session_state = session_state.get(name='', event_focus=None,event_action=None,event_subject=None)
 
@@ -17,7 +17,7 @@ if roll_d20:
         
 
 if menu_selectbox == "Fate Dice":
-    df_fate_chart = pd.read_csv("fate_chart.csv")
+    df_fate_chart = pd.read_csv("tables/fate_chart.csv")
     odds_dict = {'Impossible':0,'No Way':1,'Very Unlikely':2,'Unlikely':3,'50/50':4,'Somewhat Likely':5,'Likely':6,'Very Likely':7,'Near Sure Thing':8,'A Sure Thing':9,'Has To Be':10}
     odds = st.select_slider("Odds",options = ['Impossible','No Way','Very Unlikely','Unlikely','50/50','Somewhat Likely','Likely','Very Likely','Near Sure Thing','A Sure Thing','Has To Be'],value = "50/50")
     odds_val = odds_dict[odds]
@@ -55,7 +55,7 @@ if menu_selectbox == "Generate Event":
     st.write("1) Determine event focus.")
     st.write("2) Determine event meaning (the action and subject).")
     st.write("3) Interpret the random event based on context, focus and meaning. Take the most logical conclusion.")
-    df_event_table = pd.read_csv("event_table.csv")
+    df_event_table = pd.read_csv("tables/event_table.csv")
     bc_l,bc_r = st.beta_columns([5,5])
     roll_event_focus = bc_l.button("Roll D100 to generate event focus")
     result = "Unknown"
