@@ -5,14 +5,23 @@ import os
 
 
 def manage_scenes(session_state):
-    lc,mc,rc = st.beta_columns([2,2,2])
-    show_all_scenes= lc.radio("View all scenes",options=["Hide","Show"])
-    show_scene_creation= mc.radio("Scene Creation",options=["Hide","Show"])
-    show_scene_editor = rc.radio("Scene Editor",options=["Hide","Show"],index=1)
+    c1,c2,c3,c4 = st.beta_columns([2,2,2,2])
+    show_summary= c1.radio("Summary",options=["Hide","Show"])
+    show_all_scenes= c2.radio("View all scenes",options=["Hide","Show"])
+    show_scene_creation= c3.radio("Scene Creation",options=["Hide","Show"])
+    show_scene_editor = c4.radio("Scene Editor",options=["Hide","Show"],index=1)
     scene_file =""
     df_scenes = None
     scene_file = st.selectbox("Select scene file",os.listdir("session/scenes"))
     df_scenes = pd.read_csv("session/scenes/"+scene_file)
+
+    if show_summary=="Show":
+        st.subheader("Summary of Resolving Scenes")
+        st.write("1) Come up with the Scene Setup.")
+        st.write("2) Roll 1D10 against Chaos to see if the Setup is modified as an Altered Scene (odd) or an Interrupt (even).")
+        st.write("3) Play out the Scene.")
+        st.write("4) When the main action ends, the Scene ends.")
+        st.write("5) Update lists: Characters,Threads,Chaos Factor")
 
     if show_all_scenes =="Show":
         st.write(df_scenes)
