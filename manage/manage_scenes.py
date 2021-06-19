@@ -21,7 +21,10 @@ def manage_scenes(session_state):
         st.write("2) Roll 1D10 against Chaos to see if the Setup is modified as an Altered Scene (odd) or an Interrupt (even).")
         st.write("3) Play out the Scene.")
         st.write("4) When the main action ends, the Scene ends.")
-        st.write("5) Update lists: Characters,Threads,Chaos Factor")
+        st.write("5) Update lists: ")
+        st.write("-------Characters(Scratch out any characters who have dropped out of the adventure and add any new ones who have appeared or were mentioned. Remember, this doesn’t just mean individuals. Characters can be any force in the adventure with the ability to act on its own. That means crowds, organizations, anonymous thugs, etc.)")
+        st.write("-------Threads(Remove completed threads and add new ones. A thread is complete when the goal has been accomplished or it no longer matters.)")
+        st.write("-------Chaos Factor (If the scene was out ofcontrol, add 1 to the chaos factor. If the scene was controlled by the characters, then subtract 1 from the chaos factor)")
 
     if show_all_scenes =="Show":
         st.write(df_scenes)
